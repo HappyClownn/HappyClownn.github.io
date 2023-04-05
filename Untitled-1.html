@@ -35,12 +35,25 @@
   <div id="signature">happy clown</div>
   <span id="clown" role="img" aria-label="clown">🤡</span>
   <span id="darkmode" role="img" aria-label="dark mode">🌙</span>
+  <button id="rainbow" role="img" aria-label="rainbow">🌈</button>
+
   <script>
     // Get the elements
     let clock = document.getElementById("clock");
     let signature = document.getElementById("signature");
     let clown = document.getElementById("clown");
     let darkmode = document.getElementById("darkmode");
+let rainbow = document.getElementById("rainbow");
+
+// rainbow mode'u tıklanabilir yap
+rainbow.addEventListener("click", toggleRainbowMode);
+
+function toggleRainbowMode() {
+  // şu anki arkaplanın rengini al
+  let bgColor = window.getComputedStyle(document.body).backgroundColor;
+
+  // renkleri belirle
+  let colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
 
     // ses dosyası olayı
     let honk = new Audio("honk.mp3");
