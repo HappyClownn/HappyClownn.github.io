@@ -43,34 +43,6 @@
     let signature = document.getElementById("signature");
     let clown = document.getElementById("clown");
     let darkmode = document.getElementById("darkmode");
-let rainbow = document.getElementById("rainbow");
-
-// rainbow mode'u tıklanabilir yap
-rainbow.addEventListener("click", toggleRainbowMode);
-
-function toggleRainbowMode() {
-  // şu anki arkaplanın rengini al
-  let bgColor = window.getComputedStyle(document.body).backgroundColor;
-
-  // renkleri belirle
-  let colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
-
-  // eğer arkaplan normal ise renkleri değiştir
-  if (bgColor === "rgb(255, 255, 255)") {
-    let i = 0;
-    setInterval(() => {
-      document.body.style.backgroundColor = colors[i];
-      i = (i + 1) % colors.length;
-    }, 500);
-  } else { // eğer arkaplan renkli ise normal rengine dön
-    clearInterval();
-    document.body.style.backgroundColor = "white";
-    clock.style.color = "black";
-    signature.style.color = "gray";
-    darkmode.innerHTML = "🌙";
-    darkmode.setAttribute("aria-label", "dark mode");
-  }
-}
 
 
     // ses dosyası olayı
