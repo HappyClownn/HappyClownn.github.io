@@ -1,0 +1,126 @@
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+
+    #clock {
+      font-size: 5em;
+      margin-top: 100px;
+    }
+
+    #signature {
+      font-size: 0.5em;
+      color: gray;
+    }
+
+    #clown {
+      position: absolute;
+      transition: all 0.5s;
+    }
+
+    #darkmode {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 2em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="clock"></div>
+  <div id="signature">happy clown</div>
+  <span id="clown" role="img" aria-label="clown">🤡</span>
+  <span id="darkmode" role="img" aria-label="dark mode">🌙</span>
+  <script>
+    // Get the elements
+    let clock = document.getElementById("clock");
+    let signature = document.getElementById("signature");
+    let clown = document.getElementById("clown");
+    let darkmode = document.getElementById("darkmode");
+
+    // Get the audio file
+    let honk = new Audio("honk.mp3");
+
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+
+    // Update the clown position and size every 5 seconds
+    setInterval(updateClown, 5000);
+
+    // Add a click event listener to the clown
+    clown.addEventListener("click", playHonk);
+
+    // Add a click event listener to the dark mode button
+    darkmode.addEventListener("click", toggleDarkMode);
+
+    // A function to update the clock
+    function updateClock() {
+      // Get the current date and time
+      let date = new Date();
+
+      // Format the hours, minutes and seconds
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+
+      // Add leading zeros if needed
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      // Display the time
+      clock.innerHTML = hours + ":" + minutes + ":" + seconds;
+    }
+
+    // A function to update the clown position and size
+    function updateClown() {
+      // Get the window width and height
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+
+      // Generate a random position within the window
+      let x = Math.floor(Math.random() * width);
+      let y = Math.floor(Math.random() * height);
+
+      // Generate a random size between 50% and 200%
+      let size = Math.floor(Math.random() * 151) + 50;
+
+      // Set the clown style properties
+      clown.style.left = x + "px";
+      clown.style.top = y + "px";
+      clown.style.transform = "scale(" + size / 100 + ")";
+    }
+
+    // A function to play the honk sound
+    function playHonk() {
+      // Play the audio file
+      honk.play();
+    }
+
+    // A function to toggle the dark mode
+    function toggleDarkMode() {
+      // Get the current background color of the body
+      let bgColor = window.getComputedStyle(document.body).backgroundColor;
+
+      // If it is white, change it to black and vice versa
+      if (bgColor === "rgb(255, 255, 255)") {
+        document.body.style.backgroundColor = "black";
+        clock.style.color = "white";
+        signature.style.color = "white";
+        darkmode.innerHTML = "☀";
+        darkmode.setAttribute("aria-label", "light mode");
+      } else {
+        document.body.style.backgroundColor = "white";
+        clock.style.color = "black";
+        signature.style.color = "gray";
+        darkmode.innerHTML = "🌙";
+        darkmode.setAttribute("aria-label", "dark mode");
+      }
+    }
+  </script>
+</body>
+</html>
